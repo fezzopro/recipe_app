@@ -1,12 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  subject { User.new(name: 'Abel') }
+  before { subject.save }
+
   describe 'association' do
     it { should have_many(:foods) }
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:name) }
+    it 'should be invalid for a blank name' do
+      subject.name = nil
+      expect(subject).to_not be_valid
+    end
+
+    it 'should be valid for a given name' do
+      expect(subject).to be_valid
+    end
   end
 
   describe 'attributes' do
