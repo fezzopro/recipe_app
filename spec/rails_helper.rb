@@ -63,4 +63,10 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
+  Shoulda::Matchers.configure do |config| # rubocop:disable Lint/ShadowingOuterLocalVariable
+    config.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
+  end
 end
