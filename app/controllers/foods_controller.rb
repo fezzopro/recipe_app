@@ -32,6 +32,18 @@ class FoodsController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    respond_to do |format|
+      if @food.update(food_params)
+        format.html { redirect_to food_url(@food), notice: 'Food was successfully updated.' }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   def set_food
