@@ -19,4 +19,11 @@ RSpec.describe 'Foods', type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'GET /new' do
+    it 'returns http success' do
+      get new_food_path
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
