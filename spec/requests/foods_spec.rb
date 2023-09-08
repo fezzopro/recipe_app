@@ -57,4 +57,16 @@ RSpec.describe 'Foods', type: :request do
       expect(@food.name).to eq('Updated Food')
     end
   end
+
+  describe 'DELETE /destroy' do
+    it 'destroys the food' do
+      expect {
+        delete food_path(@food)
+      }.to change(Food, :count).by(-1)
+
+      expect(response).to have_http_status(:redirect)
+      expect(response).to redirect_to(foods_path)
+      expect(flash[:notice]).to eq('Food was successfully destroyed.')
+    end
+  end
 end
