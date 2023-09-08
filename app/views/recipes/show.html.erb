@@ -1,0 +1,76 @@
+<div class="flex justify-around my-9">
+  <div class="ml-9">
+    <%= link_to recipes_path do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+      </svg>
+    <% end %>
+  </div>
+  <div class="Recipe-details flex flex-col">
+    <% @recipe.each do |recipe| %>
+      <div class="font-bold text-3xl text-center mb-8"><%= recipe.name %></div>
+        <div class="flex gap-x-32">
+          <div>
+            <hr>
+            <div class="text-xl my-3 flex justify-between"><span class="text-gray-400">Preparation Time:</span> <%= recipe.preparation_time%></div> 
+                <hr>
+            <div class="text-xl my-3 flex justify-between"><span class="text-gray-400">Cooking Time:</span> <%= recipe.cooking_time%></div> 
+                <hr>
+            <div class="text-xl my-3 flex justify-between"><span class="text-gray-400">Descriptions:</span> <%= recipe.description %></div> 
+            <hr>
+          </div>
+          <div class="flex gap-x-8">
+            <span class="font-bold">Public:</span>
+            <span><%= recipe.public %></span>
+          </div>
+
+        </div>
+        <div class="action-button flex justify-between">
+          <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="bg-gradient-base border text-center bg-blue-600 hover:bg-white text-white hover:text-blue-600 font-bold uppercase text-xs mt-5 py-4 px-6 rounded cursor-pointer" type="button">
+            Generate Shopping List
+          </button>
+            <!-- Modal toggle -->
+          <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="bg-gradient-base border text-center bg-blue-600 hover:bg-white text-white hover:text-blue-600 font-bold uppercase text-xs mt-5 py-4 px-6 rounded cursor-pointer" type="button">
+            Add Ingredient
+          </button>
+          <%= render "modal", recipe: recipe %> 
+        </div>
+      <% end %>
+    <hr class="mt-8">
+    <div class="overflow-auto rounded-lg shadow">
+      <table class="w-full">
+        <thead class="border-b">
+          <tr>
+            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Food</th>
+            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Quantity</th>
+            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">value</th>
+            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recipe_foods.each do |recipe_food| %>
+            <tr class="border-b">
+              <%= render 'recipe', recipe_food: recipe_food %>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <div >
+                  <%= link_to "MODIFY", recipe_food.food, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+                </div>
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <%= button_to "REMOVE", recipe_food_path(recipe_food.id), method: :delete, class:"bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+          </div>
+          <div class="mr-10">
+            <%= link_to '#' do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+              </svg>
+
+            <% end %>
+          </div>
+</div>

@@ -15,16 +15,16 @@ RSpec.describe 'Recipes', type: :request do
     end
   end
 
-  describe 'GET :id/edit' do
+  describe 'GET /:id/edit' do
     it 'returns http success' do
       get '/recipes/:id/edit'
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe 'GET /:id' do
+  describe 'GET /:id/edit' do
     it 'returns http success' do
-      get '/recipes/:id'
+      get '/recipes/:id/edit'
       expect(response).to have_http_status(:success)
     end
   end
