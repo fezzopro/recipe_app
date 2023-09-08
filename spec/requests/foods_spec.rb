@@ -47,9 +47,9 @@ RSpec.describe 'Foods', type: :request do
 
   describe 'DELETE /destroy' do
     it 'destroys the food' do
-      expect {
+      expect do
         delete food_path(@food)
-      }.to change(Food, :count).by(-1)
+      end.to change(Food, :count).by(-1)
 
       expect(response).to have_http_status(:redirect)
       expect(response).to redirect_to(foods_path)
