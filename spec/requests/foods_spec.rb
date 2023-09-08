@@ -46,4 +46,15 @@ RSpec.describe 'Foods', type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'PATCH /update' do
+    it 'updates the food' do
+      patch food_path(@food), params: { food: { name: 'Updated Food' } }
+      expect(response).to have_http_status(:redirect)
+      expect(response).to redirect_to(food_path(@food))
+      expect(flash[:notice]).to eq('Food was successfully updated.')
+      @food.reload
+      expect(@food.name).to eq('Updated Food')
+    end
+  end
 end
