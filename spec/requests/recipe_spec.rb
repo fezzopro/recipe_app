@@ -1,39 +1,38 @@
 require 'rails_helper'
 
-RSpec.describe 'Recipes', type: :request do
+RSpec.describe 'recipes', type: :feature do
   before :each do
-    @user = User.create!(name: 'User 1', email: 'email@gamil.com', password: '123456')
-    @food = Food.create(name: 'Food 1', measurement_unit: '1', price: '23.1', quantity: 1, user: @user)
-    @recipe = Recipe.create(name: 'Recipe 1', preparation_time: 'time', cooking_time: 'time',
-                            description: 'Recipe 1 description', public: true, user: @user)
-    puts @recipe
+    @user = User.create(name: 'John', email: 'user@example.com', password: 'password')
+    @user.save
+    recipe = @user.recipes.create(name: 'pizza', preparation_time: '30mins', cooking_time: '90mins',
+                                  description: 'the best pizza ever', public: true, user_id: @user)
+    visit new_user_session_path
+    within('body') do
+      fill_in '@email', with: 'user@example.com'
+      fill_in 'Password', with: 'password'
+    end
+    click_button 'Login'
+    sleep 3
+    visit recipe_path(recipe)
   end
 
-  describe 'GET /index' do
-    it 'returns http success' do
-      get '/recipes'
-      expect(response).to have_http_status(302)
-    end
+  it 'renders page correctly' do
+    expect(page).to have_http_status :ok
   end
 
-  describe 'GET /new' do
-    it 'returns http success' do
-      get '/recipes/new'
-      expect(response).to have_http_status(:success)
-    end
+  it 'should show recipe name' do
+    expect(page).to have_content('pizza')
   end
 
-  describe 'GET :id/edit' do
-    it 'returns http success' do
-      get '/recipes/'
-      expect(response).to have_http_status(302)
-    end
+  it 'should show recipe description' do
+    expect(page).to have_content('the best pizza ever')
   end
 
-  describe 'GET /:id' do
-    it 'returns http success' do
-      get '/recipes/'
-      expect(response).to have_http_status(302)
-    end
+  it 'should show generate shopping list button' do
+    expect(page).to have_content('Generate shoping list')
+  end
+
+  it 'should show generate add ingredient button' do
+    expect(page).to have_content('Add ingredient')
   end
 end

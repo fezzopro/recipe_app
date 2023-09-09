@@ -5,23 +5,11 @@
 </div>
 <%end %>
 
-<h1 class="flex justify-center mt-5 text-4xl font-bold shadow decoration-sky-500">Recipes</h1>
+<%= render @recipe_food %>
 
-<div class="flex justify-center ml-[40%] my-10">
-  <%= link_to new_recipe_path do %>
-    <div class="flex items-center justify-center h-full p-2 w-10 bg-blue-800 text-white shadow rounded-full">
-      <div class="relative">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-        </svg>
-      </div>
-    </div>
-  <% end %>
+<div>
+  <%= link_to "Edit this recipe food", edit_recipe_food_path(@recipe_food) %> |
+  <%= link_to "Back to recipe foods", recipe_foods_path %>
+
+  <%= button_to "Destroy this recipe food", @recipe_food, method: :delete %>
 </div>
-
-<div id="recipes">
-  <% @recipes.each do |recipe| %>
-    <%= render recipe %>
-  <% end %>
-</div>
-
