@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
       u.permit(:name, :email, :password, :current_password)
     end
   end
+
+  def signed_in
+    redirect_to user_session_path unless user_signed_in?
+  end
 end
