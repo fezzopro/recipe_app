@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe 'Homes', type: :request do
   describe 'GET /index' do
     it 'returns http success' do
-      get '/home/index'
+      get '/public_recipes'
+      expect(response).to have_http_status(:success)
+    end
+    it 'returns http success' do
+      get '/public_recipes/:id'
       expect(response).to have_http_status(:success)
     end
   end

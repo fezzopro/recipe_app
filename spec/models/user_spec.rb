@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject { User.new(name: 'Abel') }
+  subject { User.new(name: 'User 1', email: 'email@gamil.com', password: '123456') }
   before { subject.save }
 
   describe 'association' do
