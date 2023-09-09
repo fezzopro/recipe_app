@@ -2,7 +2,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_many :recipe_foods, dependent: :destroy
 
-  validates :name, presence:
+  validates :name, presence: true
   validates :description, presence: true
 
   def recent_recipes(limit = 3)
