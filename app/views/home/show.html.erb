@@ -1,0 +1,46 @@
+<div class="flex justify-around my-9">
+  <div class="ml-9">
+    <%= link_to public_recipes_path do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+      </svg>
+    <% end %>
+  </div>
+  <div class="Recipe-details flex flex-col">
+    <div class="flex gap-8">
+      <div class="flex flex">
+        <%= "Amount of food items to by: #{@recipe_foods.count}" %>
+      </div>
+      <div class="flex flex">
+        <%= render "food_cost" %>
+      </div>
+    </div>
+    <hr class="mt-8">
+    <div class="overflow-auto rounded-lg shadow">
+      <table class="w-full">
+        <thead class="border-b">
+          <tr>
+            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Food</th>
+            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Quantity</th>
+            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recipe_foods.each do |recipe_food| %>
+            <tr class="border-b">
+              <%= render 'recipe', recipe_food: recipe_food %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="mr-10">
+      <%= link_to "#" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+        </svg>
+        
+      <% end %>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<section class='h-screen  bg-gray-100 flex justify-center'>
+  <div class="py-6 px-8 h-[37rem] w-[20rem] mt-10 bg-white rounded shadow-xl">
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <h2 class="flex justify-center text-4xl font-bold decoration-sky-500 mb-3">Forgot your password?</h2>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :email, class: "block text-gray-800 font-bold" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full border border-gray-300 py-2 pl-3 rounded mt-2 outline-none focus:ring-indigo-600 :ring-indigo-600" %>
+      </div>
+
+      <%= render "devise/shared/links" %>
+      <div class="actions">
+        <%= f.submit "Reset password", class: "cursor-pointer py-2 px-4 block mt-6 bg-indigo-500 text-white font-bold w-full text-center rounded" %>
+      </div>
+    <% end %>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+<nav class="flex justify-between px-[10%] space-x-4 mt-2">
+  <div class="flex">
+    <a href="/foods" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Foods</a>
+    <a href="/recipes" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900">Recipes</a>
+  </div>
+  <div class="flex my-1 gap-4 items-center">
+    <% if user_signed_in? %>
+      <span>Logged in as: </span>
+      <div class="flex">
+        <span><strong class="logged-email"><%= " #{current_user.name}" %></strong></span>
+      </div>
+      
+      <%= link_to 'Edit profile', edit_user_registration_path, class: "font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" %> 
+      <%= button_to "logout", destroy_user_session_path, method: :delete, class: "font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path, class: "font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" %> 
+      <%= link_to "Login", new_user_session_path, class: "font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900" %>
+    <% end %>
+  </div>
+</nav>
