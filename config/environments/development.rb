@@ -24,6 +24,7 @@ Rails.application.configure do
   #    In production, :host should be set to the actual host of your application.
 
   config.action_mailer.default_url_options = { host: ENV.fetch("MAILER_URL"), port: 3000 }
+  config.hosts << "rails-recipe-stage.onrender.com"
 
 
   # Enable/disable caching. By default caching is disabled.
