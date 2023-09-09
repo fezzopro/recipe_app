@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
   end
 
   def index
+    redirect_to public_recipes_path if user_signed_in?
     @recipes = current_user.recipes
   end
 
