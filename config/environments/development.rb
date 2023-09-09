@@ -23,7 +23,7 @@ Rails.application.configure do
   #      config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   #    In production, :host should be set to the actual host of your application.
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: ENV.fetch("MAILER_URL"), port: 3000 }
 
 
   # Enable/disable caching. By default caching is disabled.
