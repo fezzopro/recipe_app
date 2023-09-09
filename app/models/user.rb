@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   after_create :save_to_database
 
-  has_many :foods
-  has_many :recipes
+  has_many :foods, dependent: :destroy
+  has_many :recipes, dependent: :destroy
   validates :name, presence: true
 
   private
