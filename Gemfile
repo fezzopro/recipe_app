@@ -81,4 +81,4 @@ gem 'tailwindcss-rails', '~> 2.0'
 
 gem 'devise', '~> 4.9'
 
-gem "nokogiri", force_ruby_platform: true
+gem 'nokogiri', force_ruby_platform: true
